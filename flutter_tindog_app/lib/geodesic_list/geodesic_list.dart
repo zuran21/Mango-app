@@ -20,31 +20,45 @@ class _GeodesicListState extends State<GeodesicList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _appBar(),
-      bottomNavigationBar: CurvedNavigationBar(
-          buttonBackgroundColor: Colors.deepOrange,
-          animationCurve: Curves.fastOutSlowIn,
-          height: 50,
-          backgroundColor: Colors.transparent,
-          color: Colors.orangeAccent,
-          items: const [
-            Icon(
-              Icons.settings,
-              color: Colors.white,
-            ),
-            Icon(
-              Icons.favorite_border_outlined,
-              color: Colors.white,
-            ),
-            Icon(
-              Icons.account_circle_rounded,
-              color: Colors.white,
-            )
-          ],
-          onTap: (value) {
-            print(value);
-          }),
+      bottomNavigationBar: bottomNavigation(),
       body: _body(),
     );
+  }
+
+  CurvedNavigationBar bottomNavigation() {
+    return CurvedNavigationBar(
+        buttonBackgroundColor: Colors.deepOrange,
+        animationCurve: Curves.fastOutSlowIn,
+        height: 50,
+        backgroundColor: Colors.transparent,
+        color: Colors.orangeAccent,
+        items: const [
+          Icon(
+            Icons.settings,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.favorite_border_outlined,
+            color: Colors.white,
+          ),
+          Icon(
+            Icons.account_circle_rounded,
+            color: Colors.white,
+          )
+        ],
+        onTap: (value) {
+          setState(() {
+            if (value == 0) {
+              bodyTitle = 'Sttings';
+            }
+            if (value == 1) {
+              bodyTitle = 'Home page TinDog';
+            }
+            if (value == 2) {
+              bodyTitle = 'User';
+            }
+          });
+        });
   }
 
   Widget _body() => Center(
